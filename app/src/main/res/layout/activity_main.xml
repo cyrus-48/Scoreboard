@@ -213,6 +213,7 @@
         android:orientation="horizontal"
         >
         <LinearLayout
+            android:id="@+id/leftPlayerPanel"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -414,7 +415,17 @@
 
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/playerSummary"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            />
+
         <LinearLayout
+            android:id="@+id/rightPlayerPanel"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -616,8 +627,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textColor="@color/teal_700"
-        android:textStyle="bold|italic"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="13sp"
         android:text="Start a New "
         />
 

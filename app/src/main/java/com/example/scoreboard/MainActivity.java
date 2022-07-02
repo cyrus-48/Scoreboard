@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    TextView titleM, shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
-    LinearLayout player1,btns,teamsPanel ,playersPanel, lastPanel;
+    TextView titleM, playersSummary,shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
+    LinearLayout player1,leftPlayerPanel,rightPlayerPanel,btns,teamsPanel ,playersPanel, lastPanel;
     Button startGame ,reset ,pointA1,pointA2,pointA3,pointB1,pointB2,pointB3,endGame, whatsapp,gmail,facebook;
     int  scoreA = 0, scoreB =0 , foulsA1 = 0 ,foulsA2,foulsA3,foulsA4,foulsA5,foulsB1,foulsB2,foulsB3,foulsB4,foulsB5;
 
@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        leftPlayerPanel = findViewById(R.id.leftPlayerPanel);
+        rightPlayerPanel = findViewById(R.id.rightPlayerPanel);
+        playersSummary = findViewById(R.id.playerSummary);
         titleM = findViewById(R.id.titleM);
         teamsPanel = findViewById(R.id.teamsPanel);
         playersPanel = findViewById(R.id.playersPanel);
@@ -179,15 +182,19 @@ public class MainActivity extends AppCompatActivity {
         else if(Integer.parseInt((String) teamBscores.getText()) < Integer.parseInt((String) teamAScores.getText())) {return "TeamA";}
         else {return "Draw";}
     }
-    public void setWhatsapp(View view){sendMessage(message());}
+    public void setWhatsapp(View view){
+        String message = message() + "\n fouls \n"+playerSummary();
+        sendMessage(message)
+        ;}
     public void emailling(String message){
+        String fullMessage = message() + "\n fouls \n" + playerSummary();
         String[] emails = {"cyrusmwendwa370@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setData(Uri.parse("mailto:"));
         intent.setType("'/'");
         intent.putExtra(intent.EXTRA_EMAIL, emails);
-        intent.putExtra(intent.EXTRA_SUBJECT, "Matc results summary");
-        intent.putExtra(intent.EXTRA_TEXT, message());
+        intent.putExtra(intent.EXTRA_SUBJECT, "Match results summary");
+        intent.putExtra(intent.EXTRA_TEXT, fullMessage);
         if (intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);}
     }
@@ -348,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
     public String message(){
         int teamBpoints = Integer.parseInt((String) teamBscores.getText());
         int teamApoint = Integer.parseInt((String) teamAScores.getText());
-        String messageText= " Winning Team : "+winningTeam()+"!!! points \n TeamA:" +  teamApoint+" Team:B  " + teamBpoints ;
+        String messageText= "Winning Team : "+winningTeam()+"!!! \n points \n   TeamA: " +  teamApoint+"  Team:B  " + teamBpoints ;
         return  messageText;
     }
 // reset button
@@ -380,10 +387,11 @@ public class MainActivity extends AppCompatActivity {
         reset.setVisibility(View.VISIBLE);
         display();
     }
-    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("--Full Time--  Results: \n" +message());
+    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
         reset.setVisibility(View.VISIBLE);
+        onfullTime();
 
     }
     public void clearDisplay(){
@@ -398,4 +406,31 @@ public class MainActivity extends AppCompatActivity {
         playersPanel.setVisibility(View.VISIBLE);
 
     }
+    public void onfullTime(){
+       leftPlayerPanel.setVisibility(View.GONE);
+       rightPlayerPanel.setVisibility(View.GONE);
+       teamsPanel.setVisibility(View.GONE);
+       playersSummary.setVisibility(View.VISIBLE);
+       playersSummary.setText(playerSummary());
+
+
+    }
+    public String playerSummary(){
+        String message = "  player name   " + " no. of Fouls \n "+
+                         "Team A \n"+
+                       playerA1.getText()+"             "+foulA1.getText()+"\n"+
+                       playerA2.getText()+"              "+foulA2.getText()+"\n"+
+                       playerA3.getText()+"             "+foulA3.getText()+"\n"+
+                       playerA4.getText()+"            "+foulA4.getText()+"\n"+
+                       playerA5.getText()+"            "+foulA5.getText()+"\n"+
+                       "Team B\n"+
+                       playerB1.getText()+"                 "+foulB1.getText()+"\n"+
+                       playerB2.getText()+"            "+foulB2.getText()+"\n"+
+                       playerB3.getText()+"          "+foulB3.getText()+"\n"+
+                       playerB4.getText()+"            "+foulB4.getText()+"\n"+
+                       playerB5.getText()+"          "+foulB5.getText()+"\n"
+                ;
+        return message;
+    }
+
 }
