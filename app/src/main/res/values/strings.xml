@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Scoreboard</string>
+    <string name="title">Basketball Score Board</string>
+    <string name="team1">Team A</string>
+    <string name="team2">Team B</string>
+    <string name="point1">+1</string>
+    <string name="point2">+2</string>
+    <string name="point3">+3</string>
+    <string name="player1">1. Rick Barry</string>
+    <string name="player2">2. Larry Bird</string>
+    <string name="player3">3. Bill Bradley</string>
+    <string name="player4">4. Manute Bol</string>
+    <string name="player5">5. Kobe Bryant</string>
+    <string name="player6">1. Bob Cosy</string>
+    <string name="player7">2. Tim Duncan</string>
+    <string name="player8">3. Wayne Embry</string>
+    <string name="player9">4. Julius Erving</string>
+    <string name="player10">5. Wayne Embry</string>
+
+</resources>
