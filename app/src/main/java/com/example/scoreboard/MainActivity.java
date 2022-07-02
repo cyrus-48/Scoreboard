@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    TextView  shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
-    LinearLayout player1,btns;
+    TextView titleM, shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
+    LinearLayout player1,btns,teamsPanel ,playersPanel, lastPanel;
     Button startGame ,reset ,pointA1,pointA2,pointA3,pointB1,pointB2,pointB3,endGame, whatsapp,gmail,facebook;
     int  scoreA = 0, scoreB =0 , foulsA1 = 0 ,foulsA2,foulsA3,foulsA4,foulsA5,foulsB1,foulsB2,foulsB3,foulsB4,foulsB5;
 
@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        titleM = findViewById(R.id.titleM);
+        teamsPanel = findViewById(R.id.teamsPanel);
+        playersPanel = findViewById(R.id.playersPanel);
+        lastPanel = findViewById(R.id.last);
         shareText = (TextView) findViewById(R.id.shareText);
         btns = (LinearLayout) findViewById(R.id.btns);
         reset = (Button) findViewById(R.id.reset);
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         pointB3 = findViewById(R.id.pointB3);
         endGame.setVisibility(View.GONE);
         reset.setVisibility(View.GONE);
+        clearDisplay();
 
         // event listener to button '+1' to add a point to team B score
         pointB1.setOnClickListener(new View.OnClickListener() {
@@ -366,17 +371,31 @@ public class MainActivity extends AppCompatActivity {
         startGame.setVisibility(View.VISIBLE);
         reset.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
+        clearDisplay();
     }
 
     public void StartGame(View view) {shareText.setText("---Game started ---");btns.setVisibility(View.GONE);
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.VISIBLE);
         reset.setVisibility(View.VISIBLE);
+        display();
     }
     public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("--Full Time--  Results: \n" +message());
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
         reset.setVisibility(View.VISIBLE);
+
+    }
+    public void clearDisplay(){
+        titleM.setVisibility(View.GONE);
+        shareText.setText("Click  start to Launch new Scoreboard ");
+        teamsPanel.setVisibility(View.GONE);
+         playersPanel.setVisibility(View.GONE);
+    }
+    public void display(){
+        titleM.setVisibility(View.VISIBLE);
+        teamsPanel.setVisibility(View.VISIBLE);
+        playersPanel.setVisibility(View.VISIBLE);
 
     }
 }
