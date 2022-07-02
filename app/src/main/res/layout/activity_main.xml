@@ -633,16 +633,18 @@
             <Button
                 android:id="@+id/whatsapp"
                 android:layout_width="0dp"
+                android:onClick="setWhatsapp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:drawableEnd="@drawable/ic_whatsapp_svgrepo_com"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/facebook"
+                android:onClick="smsSend"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
-                android:drawableEnd= "@drawable/ic_icons8_facebook_64"
+                android:drawableEnd= "@drawable/ic_sms_blue"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/gmail"

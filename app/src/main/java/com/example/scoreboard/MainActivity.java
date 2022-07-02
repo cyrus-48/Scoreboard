@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -159,9 +160,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //endGame.setOnClickListener(view -> onEndGame());
+        // event listener for whatsappp
 
+    }
+    // winning team
+    public String winningTeam(){
+        if (Integer.parseInt((String) teamBscores.getText()) > Integer.parseInt((String) teamAScores.getText())){
+            return "TeamB";
+        }
+        else {
+            return "TeamA";
+        }
 
-
+    }
+    public void setWhatsapp(View view){
+        int teamBpoints = Integer.parseInt((String) teamBscores.getText());
+        int teamApoint = Integer.parseInt((String) teamAScores.getText());
+        String message = " Winning Team : "+winningTeam()+"!!! Game points TeamA " +  teamApoint+"\n Team B  " + teamBpoints ;
+        sendMessage(message);
     }
 
 
@@ -178,16 +194,47 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    // sending a text
+    public void smsSend(View view) {
+        String number= "0115645217";
+        String msg= "match result";
+        try {
+            SmsManager smsManager=SmsManager.getDefault();
+            smsManager.sendTextMessage(number,null,msg,null,null);
+            Toast.makeText(getApplicationContext(),"Message Sent",Toast.LENGTH_LONG).show();
+        }catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),"Some fiedls is Empty",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    // whatsApp messaging
+    private void sendMessage(String message) {
+        // Creating new intent
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.setType("text/plain");
+        intent.setPackage("com.whatsapp.w4b");
+        // Give your message here
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+
+        // Checking whether Whatsapp
+        // is installed or not
+        if (intent.resolveActivity(getPackageManager()) == null) {
+            Toast.makeText(this, "Please install whatsapp first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // Starting Whatsapp
+        startActivity(intent);
+    }
+
+
     public  void onEndGame(View view){
 
 
     }
-    // check number of fouls if greate than 5
-    public boolean is_suspension(){
-        int numberOfFouls = Integer.parseInt((String) foulA1.getText());
-        if (numberOfFouls < 5){return false;}
-        else{return true;}
-    }
+
     // player a1 fouls
     public void playerA1Fouls(){
         int numberOfFouls = Integer.parseInt((String) foulA1.getText());
