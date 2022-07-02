@@ -15,19 +15,22 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     TextView  shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
     LinearLayout player1,btns;
-    Button pointA1,pointA2,pointA3,pointB1,pointB2,pointB3,endGame, whatsapp,gmail,facebook;
+    Button startGame ,reset ,pointA1,pointA2,pointA3,pointB1,pointB2,pointB3,endGame, whatsapp,gmail,facebook;
     int  scoreA = 0, scoreB =0 , foulsA1 = 0 ,foulsA2,foulsA3,foulsA4,foulsA5,foulsB1,foulsB2,foulsB3,foulsB4,foulsB5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        shareText = findViewById(R.id.shareText);
-          btns = (LinearLayout) findViewById(R.id.btns);
+
+        setContentView(R.layout.activity_main);
+        shareText = (TextView) findViewById(R.id.shareText);
+        btns = (LinearLayout) findViewById(R.id.btns);
+        reset = (Button) findViewById(R.id.reset);
+        startGame = (Button)findViewById(R.id.startGame);
         endGame = findViewById(R.id.endGame);
         whatsapp = findViewById(R.id.whatsapp);
         facebook = findViewById(R.id.facebook);
         gmail = (Button) findViewById(R.id.gmail);
-        setContentView(R.layout.activity_main);
         playerA1 = findViewById(R.id.playerA1);
         foulA1 = findViewById(R.id.foulA1);
         player1 = findViewById(R.id.player1);
@@ -57,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         pointB1 = findViewById(R.id.pointB1);
         pointB2= findViewById(R.id.pointB2);
         pointB3 = findViewById(R.id.pointB3);
-
 
         // event listener to button '+1' to add a point to team B score
         pointB1.setOnClickListener(new View.OnClickListener() {
@@ -161,46 +163,33 @@ public class MainActivity extends AppCompatActivity {
         });
         //endGame.setOnClickListener(view -> onEndGame());
         // event listener for whatsappp
+        // message
 
     }
     // winning team
     public String winningTeam(){
-        if (Integer.parseInt((String) teamBscores.getText()) > Integer.parseInt((String) teamAScores.getText())){
-            return "TeamB";
-        }
-        else {
-            return "TeamA";
-        }
-
+        if (Integer.parseInt((String) teamBscores.getText()) > Integer.parseInt((String) teamAScores.getText())){return "TeamB";}
+        else if(Integer.parseInt((String) teamBscores.getText()) < Integer.parseInt((String) teamAScores.getText())) {return "TeamA";}
+        else {return "Draw";}
     }
-    public void setWhatsapp(View view){
-        int teamBpoints = Integer.parseInt((String) teamBscores.getText());
-        int teamApoint = Integer.parseInt((String) teamAScores.getText());
-        String message = " Winning Team : "+winningTeam()+"!!! Game points TeamA " +  teamApoint+"\n Team B  " + teamBpoints ;
-        sendMessage(message);
-    }
-
-
+    public void setWhatsapp(View view){sendMessage(message());}
     public void emailling(String message){
         String[] emails = {"cyrusmwendwa370@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setData(Uri.parse("mailto:"));
         intent.setType("'/'");
         intent.putExtra(intent.EXTRA_EMAIL, emails);
-        intent.putExtra(intent.EXTRA_SUBJECT, "Todays basket ball results");
-        intent.putExtra(intent.EXTRA_TEXT, message);
+        intent.putExtra(intent.EXTRA_SUBJECT, "Matc results summary");
+        intent.putExtra(intent.EXTRA_TEXT, message());
         if (intent.resolveActivity(getPackageManager()) != null){
-            startActivity(intent);
-        }
-
+            startActivity(intent);}
     }
     // sending a text
     public void smsSend(View view) {
         String number= "0115645217";
-        String msg= "match result";
         try {
             SmsManager smsManager=SmsManager.getDefault();
-            smsManager.sendTextMessage(number,null,msg,null,null);
+            smsManager.sendTextMessage(number,null,message(),null,null);
             Toast.makeText(getApplicationContext(),"Message Sent",Toast.LENGTH_LONG).show();
         }catch (Exception e)
         {
@@ -228,13 +217,6 @@ public class MainActivity extends AppCompatActivity {
         // Starting Whatsapp
         startActivity(intent);
     }
-
-
-    public  void onEndGame(View view){
-
-
-    }
-
     // player a1 fouls
     public void playerA1Fouls(){
         int numberOfFouls = Integer.parseInt((String) foulA1.getText());
@@ -356,4 +338,32 @@ public class MainActivity extends AppCompatActivity {
         String message = "Game results";
         emailling(message);
     }
+    public String message(){
+        int teamBpoints = Integer.parseInt((String) teamBscores.getText());
+        int teamApoint = Integer.parseInt((String) teamAScores.getText());
+        String messageText= " Winning Team : "+winningTeam()+"!!! points \n TeamA:" +  teamApoint+" Team:B  " + teamBpoints ;
+        return  messageText;
+    }
+// reset button
+    public void reset(View view) {
+        shareText.setText("--Start a new Game---");
+        // Reset scoresbtns.setVisibility(View.GONE);
+        teamAScores.setText(""+0);teamBscores.setText(""+0);
+        // resset suspended playes and fouls count
+        foulsA1 = 0;foulA1.setText("" + 0);playerA1.setVisibility(View.VISIBLE);
+        foulsA2 = 0;foulA2.setText("" + 0);playerA2.setVisibility(View.VISIBLE);
+        foulsA3 = 0;foulA3.setText("" + 0);playerA3.setVisibility(View.VISIBLE);
+        foulsA4 = 0;foulA4.setText("" + 0);playerA4.setVisibility(View.VISIBLE);
+        foulsA5 = 0;foulA5.setText("" + 0);playerA5.setVisibility(View.VISIBLE);
+        foulsB1 = 0;foulB1.setText("" + 0);playerB1.setVisibility(View.VISIBLE);
+        foulsB2 = 0;foulB2.setText("" + 0);playerB2.setVisibility(View.VISIBLE);
+        foulsB3 = 0;foulB3.setText("" + 0);playerB3.setVisibility(View.VISIBLE);
+        foulsB4 = 0;foulB4.setText("" + 0);playerB4.setVisibility(View.VISIBLE);
+        foulsB5 = 0;foulB5.setText("" + 0);playerB5.setVisibility(View.VISIBLE);
+        btns.setVisibility(View.GONE);
+    }
+
+    public void StartGame(View view) {shareText.setText("---Start game ---");btns.setVisibility(View.GONE);
+         ;}
+    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("--Full Time--  Results: \n" +message());}
 }

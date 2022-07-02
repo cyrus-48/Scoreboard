@@ -25,7 +25,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
         android:orientation="horizontal"
         >
         <LinearLayout
@@ -605,26 +605,26 @@
         </LinearLayout>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/shareText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:text="Start a New "
+        />
+
     <!--share -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/shareText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/teal_700"
-            android:textStyle="bold|italic"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:text="Game on going"
-            />
         <LinearLayout
             android:id="@+id/btns"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
@@ -660,21 +660,55 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:gravity="center"
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             >
             <Button
-                android:id="@+id/endGame"
-                android:onClick="onEndGame"
-                android:layout_width="match_parent"
+                android:id="@+id/startGame"
+                android:onClick="StartGame"
+                android:visibility="visible"
+                android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/white"
-                android:text="End Game "
+                android:text="Start "
+
+                />
+            <Button
+                android:id="@+id/endGame"
+                android:onClick="onEndGame"
+                android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="FT "
+
+                />
+            <Button
+                android:id="@+id/reset"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="reset"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="Reset"
 
                 />
 
