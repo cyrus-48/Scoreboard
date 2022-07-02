@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         pointB1 = findViewById(R.id.pointB1);
         pointB2= findViewById(R.id.pointB2);
         pointB3 = findViewById(R.id.pointB3);
+        endGame.setVisibility(View.GONE);
+        reset.setVisibility(View.GONE);
 
         // event listener to button '+1' to add a point to team B score
         pointB1.setOnClickListener(new View.OnClickListener() {
@@ -361,9 +363,20 @@ public class MainActivity extends AppCompatActivity {
         foulsB4 = 0;foulB4.setText("" + 0);playerB4.setVisibility(View.VISIBLE);
         foulsB5 = 0;foulB5.setText("" + 0);playerB5.setVisibility(View.VISIBLE);
         btns.setVisibility(View.GONE);
+        startGame.setVisibility(View.VISIBLE);
+        reset.setVisibility(View.GONE);
+        endGame.setVisibility(View.GONE);
     }
 
-    public void StartGame(View view) {shareText.setText("---Start game ---");btns.setVisibility(View.GONE);
-         ;}
-    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("--Full Time--  Results: \n" +message());}
+    public void StartGame(View view) {shareText.setText("---Game started ---");btns.setVisibility(View.GONE);
+        startGame.setVisibility(View.GONE);
+        endGame.setVisibility(View.VISIBLE);
+        reset.setVisibility(View.VISIBLE);
+    }
+    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("--Full Time--  Results: \n" +message());
+        startGame.setVisibility(View.GONE);
+        endGame.setVisibility(View.GONE);
+        reset.setVisibility(View.VISIBLE);
+
+    }
 }
