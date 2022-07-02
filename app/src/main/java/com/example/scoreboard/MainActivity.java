@@ -379,12 +379,15 @@ public class MainActivity extends AppCompatActivity {
         reset.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
         clearDisplay();
+        leftPlayerPanel.setVisibility(View.VISIBLE);
+        rightPlayerPanel.setVisibility(View.VISIBLE);
     }
 
     public void StartGame(View view) {shareText.setText("---Game started ---");btns.setVisibility(View.GONE);
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.VISIBLE);
         reset.setVisibility(View.VISIBLE);
+        playersSummary.setVisibility(View.GONE);
         display();
     }
     public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
