@@ -13,16 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    TextView titleM, playersSummary,shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
+    TextView titleM,timer, playersSummary,shareText,playerA1 , foulA1, playerA2 ,foulA2 ,playerA3,foulA3,playerA4,foulA4,playerA5,foulA5,playerB1,foulB1,playerB2,foulB2,playerB3,foulB3,playerB4,foulB4,playerB5,foulB5, teamAScores , teamBscores;
     LinearLayout player1,leftPlayerPanel,rightPlayerPanel,btns,teamsPanel ,playersPanel, lastPanel;
     Button startGame ,reset ,pointA1,pointA2,pointA3,pointB1,pointB2,pointB3,endGame, whatsapp,gmail,facebook;
-    int  scoreA = 0, scoreB =0 , foulsA1 = 0 ,foulsA2,foulsA3,foulsA4,foulsA5,foulsB1,foulsB2,foulsB3,foulsB4,foulsB5;
+    int  scoreA = 0, scoreB =0 , foulsA1 = 0 ,foulsA2,foulsA3,foulsA4,foulsA5,foulsB1,foulsB2,foulsB3,foulsB4,foulsB5 , counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        timer = findViewById(R.id.timer);
         leftPlayerPanel = findViewById(R.id.leftPlayerPanel);
         rightPlayerPanel = findViewById(R.id.rightPlayerPanel);
         playersSummary = findViewById(R.id.playerSummary);
@@ -77,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 scoreB = Integer.parseInt((String)teamBscores.getText());
                 scoreB+=onePoint();
+
                 teamBscores.setText(""+scoreB);
+                counter();
             }
         });
         // event listener to button '+2' to add a point to team B score
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 scoreB = Integer.parseInt((String)teamBscores.getText());
                 scoreB+=twoPoints();
                 teamBscores.setText(""+scoreB);
+                counter();
             }
         });
         // event listener to button '+3' to add a point to team B score
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 scoreB = Integer.parseInt((String)teamBscores.getText());
                 scoreB+=threePoints();
                 teamBscores.setText(""+scoreB);
+                counter();
             }
         });
         // event listener to button '+1' to add a point to team A score
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 scoreA = Integer.parseInt((String)teamAScores.getText());
                 scoreA+=onePoint();
                 teamAScores.setText(""+scoreA);
+                counter();
             }
         });
         // event listener to button '+2' to add a point to team A score
@@ -114,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 scoreA = Integer.parseInt((String)teamAScores.getText());
                 scoreA+=twoPoints();
                 teamAScores.setText(""+scoreA);
+                counter();
             }
         });
         // event listener to button '+3' to add a point to team A score
@@ -123,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 scoreA = Integer.parseInt((String)teamAScores.getText());
                 scoreA+=threePoints();
                 teamAScores.setText(""+scoreA);
+                counter();
             }
         });
 
@@ -364,6 +372,8 @@ public class MainActivity extends AppCompatActivity {
         // Reset scoresbtns.setVisibility(View.GONE);
         teamAScores.setText(""+0);teamBscores.setText(""+0);
         // resset suspended playes and fouls count
+        timer.setText(""+0);
+        counter = 0;
         foulsA1 = 0;foulA1.setText("" + 0);playerA1.setVisibility(View.VISIBLE);
         foulsA2 = 0;foulA2.setText("" + 0);playerA2.setVisibility(View.VISIBLE);
         foulsA3 = 0;foulA3.setText("" + 0);playerA3.setVisibility(View.VISIBLE);
@@ -385,12 +395,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void StartGame(View view) {shareText.setText("---Game started ---");btns.setVisibility(View.GONE);
         startGame.setVisibility(View.GONE);
-        endGame.setVisibility(View.VISIBLE);
+        endGame.setVisibility(View.GONE);
         reset.setVisibility(View.VISIBLE);
         playersSummary.setVisibility(View.GONE);
         display();
     }
-    public  void onEndGame(View view){btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
+    public  void onEndGame(){btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
         reset.setVisibility(View.VISIBLE);
@@ -435,5 +445,18 @@ public class MainActivity extends AppCompatActivity {
                 ;
         return message;
     }
+    public void displayCounter(){
+        timer.setText(""+ counter);
+    }
+    public  int counter(){
+        int time =Integer.parseInt((String)timer.getText()) ;
+        if(time == 50 ){
+            timer.setText("FT");
+         onEndGame();
 
+        }
+        displayCounter();
+        return counter++;
+
+    }
 }
