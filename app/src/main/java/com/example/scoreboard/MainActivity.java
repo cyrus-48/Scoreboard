@@ -73,65 +73,47 @@ public class MainActivity extends AppCompatActivity {
         clearDisplay();
 
         // event listener to button '+1' to add a point to team B score
-        pointB1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreB = Integer.parseInt((String)teamBscores.getText());
-                scoreB+=onePoint();
+        pointB1.setOnClickListener(view -> {
+            scoreB = Integer.parseInt((String)teamBscores.getText());
+            scoreB+=onePoint();
 
-                teamBscores.setText(""+scoreB);
-                counter();
-            }
+            teamBscores.setText(""+scoreB);
+            counter();
         });
         // event listener to button '+2' to add a point to team B score
-        pointB2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreB = Integer.parseInt((String)teamBscores.getText());
-                scoreB+=twoPoints();
-                teamBscores.setText(""+scoreB);
-                counter();
-            }
+        pointB2.setOnClickListener(view -> {
+            scoreB = Integer.parseInt((String)teamBscores.getText());
+            scoreB+=twoPoints();
+            teamBscores.setText(""+scoreB);
+            counter();
         });
         // event listener to button '+3' to add a point to team B score
-        pointB3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreB = Integer.parseInt((String)teamBscores.getText());
-                scoreB+=threePoints();
-                teamBscores.setText(""+scoreB);
-                counter();
-            }
+        pointB3.setOnClickListener(view -> {
+            scoreB = Integer.parseInt((String)teamBscores.getText());
+            scoreB+=threePoints();
+            teamBscores.setText(""+scoreB);
+            counter();
         });
         // event listener to button '+1' to add a point to team A score
-        pointA1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreA = Integer.parseInt((String)teamAScores.getText());
-                scoreA+=onePoint();
-                teamAScores.setText(""+scoreA);
-                counter();
-            }
+        pointA1.setOnClickListener(view -> {
+            scoreA = Integer.parseInt((String)teamAScores.getText());
+            scoreA+=onePoint();
+            teamAScores.setText(""+scoreA);
+            counter();
         });
         // event listener to button '+2' to add a point to team A score
-        pointA2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreA = Integer.parseInt((String)teamAScores.getText());
-                scoreA+=twoPoints();
-                teamAScores.setText(""+scoreA);
-                counter();
-            }
+        pointA2.setOnClickListener(view -> {
+            scoreA = Integer.parseInt((String)teamAScores.getText());
+            scoreA+=twoPoints();
+            teamAScores.setText(""+scoreA);
+            counter();
         });
         // event listener to button '+3' to add a point to team A score
-        pointA3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreA = Integer.parseInt((String)teamAScores.getText());
-                scoreA+=threePoints();
-                teamAScores.setText(""+scoreA);
-                counter();
-            }
+        pointA3.setOnClickListener(view -> {
+            scoreA = Integer.parseInt((String)teamAScores.getText());
+            scoreA+=threePoints();
+            teamAScores.setText(""+scoreA);
+            counter();
         });
 
         //Event listeners for fouls fo playerA1
