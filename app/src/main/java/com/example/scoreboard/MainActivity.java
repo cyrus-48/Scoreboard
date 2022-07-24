@@ -125,42 +125,12 @@ public class MainActivity extends AppCompatActivity {
         //Event listeners for fouls fo player4 of team A
         playerA4.setOnClickListener( view -> playerA4Fouls());
         //Event listeners for fouls fo player of team A
-        playerA5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playerA5Fouls();
-            }
-        });
-        playerB1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                 playerB1Fouls();
-            }
-        });
-        playerB2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               playerB2Fouls();
-            }
-        });
-        playerB3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               playerB3Fouls();
-            }
-        });
-        playerB4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              playerB4Fouls();
-            }
-        });
-        playerB5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              playerB5Fouls();
-            }
-        });
+        playerA5.setOnClickListener(view -> playerA5Fouls());
+        playerB1.setOnClickListener(view -> playerB1Fouls());
+        playerB2.setOnClickListener(view -> playerB2Fouls());
+        playerB3.setOnClickListener(view -> playerB3Fouls());
+        playerB4.setOnClickListener(view -> playerB4Fouls());
+        playerB5.setOnClickListener(view -> playerB5Fouls());
         //endGame.setOnClickListener(view -> onEndGame());
         // event listener for whatsappp
         // message
