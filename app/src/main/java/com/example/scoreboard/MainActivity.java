@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        timer = findViewById(R.id.timer);
+
         leftPlayerPanel = findViewById(R.id.leftPlayerPanel);
         rightPlayerPanel = findViewById(R.id.rightPlayerPanel);
         playersSummary = findViewById(R.id.playerSummary);
@@ -78,42 +78,42 @@ public class MainActivity extends AppCompatActivity {
             scoreB+=onePoint();
 
             teamBscores.setText(""+scoreB);
-            counter();
+
         });
         // event listener to button '+2' to add a point to team B score
         pointB2.setOnClickListener(view -> {
             scoreB = Integer.parseInt((String)teamBscores.getText());
             scoreB+=twoPoints();
             teamBscores.setText(""+scoreB);
-            counter();
+
         });
         // event listener to button '+3' to add a point to team B score
         pointB3.setOnClickListener(view -> {
             scoreB = Integer.parseInt((String)teamBscores.getText());
             scoreB+=threePoints();
             teamBscores.setText(""+scoreB);
-            counter();
+
         });
         // event listener to button '+1' to add a point to team A score
         pointA1.setOnClickListener(view -> {
             scoreA = Integer.parseInt((String)teamAScores.getText());
             scoreA+=onePoint();
             teamAScores.setText(""+scoreA);
-            counter();
+
         });
         // event listener to button '+2' to add a point to team A score
         pointA2.setOnClickListener(view -> {
             scoreA = Integer.parseInt((String)teamAScores.getText());
             scoreA+=twoPoints();
             teamAScores.setText(""+scoreA);
-            counter();
+
         });
         // event listener to button '+3' to add a point to team A score
         pointA3.setOnClickListener(view -> {
             scoreA = Integer.parseInt((String)teamAScores.getText());
             scoreA+=threePoints();
             teamAScores.setText(""+scoreA);
-            counter();
+
         });
 
         //Event listeners for fouls fo playerA1
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
 
         intent.setType("text/plain");
-        intent.setPackage("com.whatsapp.w4b");
+        intent.setPackage("com.tmwhatsapp");
         // Give your message here
         intent.putExtra(Intent.EXTRA_TEXT, message);
 
@@ -354,8 +354,6 @@ public class MainActivity extends AppCompatActivity {
         // Reset scoresbtns.setVisibility(View.GONE);
         teamAScores.setText(""+0);teamBscores.setText(""+0);
         // resset suspended playes and fouls count
-        timer.setText(""+0);
-        counter = 0;
         foulsA1 = 0;foulA1.setText("" + 0);playerA1.setVisibility(View.VISIBLE);
         foulsA2 = 0;foulA2.setText("" + 0);playerA2.setVisibility(View.VISIBLE);
         foulsA3 = 0;foulA3.setText("" + 0);playerA3.setVisibility(View.VISIBLE);
@@ -377,12 +375,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void StartGame(View view) {shareText.setText("---Game started ---");btns.setVisibility(View.GONE);
         startGame.setVisibility(View.GONE);
-        endGame.setVisibility(View.GONE);
+        endGame.setVisibility(View.VISIBLE);
         reset.setVisibility(View.VISIBLE);
         playersSummary.setVisibility(View.GONE);
         display();
     }
-    public  void onEndGame(){btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
+    public  void onEndGame(View view){
+        btns.setVisibility(View.VISIBLE);shareText.setText("Full Time Results: \n" +message());
         startGame.setVisibility(View.GONE);
         endGame.setVisibility(View.GONE);
         reset.setVisibility(View.VISIBLE);
@@ -409,6 +408,7 @@ public class MainActivity extends AppCompatActivity {
        playersSummary.setText(playerSummary());
 
 
+
     }
     public String playerSummary(){
         String message = "  player name   " + " no. of Fouls \n "+
@@ -427,18 +427,5 @@ public class MainActivity extends AppCompatActivity {
                 ;
         return message;
     }
-    public void displayCounter(){
-        timer.setText(""+ counter);
-    }
-    public  int counter(){
-        int time =Integer.parseInt((String)timer.getText()) ;
-        if(time == 50 ){
-            timer.setText("FT");
-         onEndGame();
 
-        }
-        displayCounter();
-        return counter++;
-
-    }
 }

@@ -116,17 +116,7 @@
 
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/timer"
-            android:layout_width="0dp"
-            android:layout_weight="0.2"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="0"
-            />
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -716,6 +706,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:onClick="onEndGame"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded"
                 android:textStyle="bold"
